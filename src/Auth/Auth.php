@@ -16,8 +16,11 @@ class Auth
     private function __construct(Logger $logger)
     {
         $this->logger = $logger;
-        session_start();
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
         $this->db = DB::getInstance();
+        $this->currentUser = $_SESSION['user'] ?? null;
     }
 
     public static function getInstance(Logger $logger)

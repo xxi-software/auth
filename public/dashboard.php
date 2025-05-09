@@ -5,8 +5,6 @@ use EPayco\Api\Auth\Auth;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
-session_start();
-
 // Configurar el logger
 $logger = new Logger('EPayco\Api');
 $logger->pushHandler(new StreamHandler(__DIR__ . '/../logs/app.log', Logger::DEBUG));
@@ -21,6 +19,11 @@ if (!$auth->isLoggedIn()) {
 }
 
 $user = $auth->getCurrentUser();
+if (!$user) {
+    $auth->logout();
+    header('Location: login.php');
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
