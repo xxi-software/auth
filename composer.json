@@ -1,0 +1,19 @@
+{
+    "name": "e-payco/api",
+    "version": "v1.0.0",
+    "description": "API de pagos EPayco",
+    "autoload": {
+        "psr-4": {
+            "EPayco\\Api\\": "src/",
+            "EPayco\\Api\\Conn\\": "src/Conn/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Camilo"
+        }
+    ],
+    "require": {
+        "monolog/monolog": "^2.10"
+    }
+}
