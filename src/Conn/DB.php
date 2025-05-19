@@ -38,9 +38,13 @@ class DB
 
     public function getUserByEmail($email)
     {
+        // Prepara la consulta SQL para obtener un usuario por su email
         $query = "SELECT * FROM users WHERE email = ?";
-        $stmt = mysqli_prepare($this->conn, $query);
-        mysqli_stmt_bind_param($stmt, "s", $email);
+        // Prepara la sentencia SQL
+        $stmt = mysqli_prepare($this->conn, $query);        
+        // Vincula el parámetro con el valor
+        mysqli_stmt_bind_param($stmt, "s", $email);        
+        // Ejecuta la consulta
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         // Retorna un array asociativo con los datos del usuario
